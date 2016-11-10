@@ -16,8 +16,7 @@ public class ChangeDoorColor : MonoBehaviour
 	void Update ()
 	{
 	    float distance = Vector3.Distance(player.transform.position, transform.position);
-	    if (distance <= 200)
-	        doorMaterial.color = Color.Lerp(Color.white, Color.red, 2 - distance/10);
+	    doorMaterial.color = Color.Lerp(Color.red, Color.white,  distance/20);
 	}
 
     void OnApplicationQuit()
