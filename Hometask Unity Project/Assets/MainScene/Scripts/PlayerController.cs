@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float moveSpeed = 3f;
-    public float rotateSpeed = 20f;
+    public float moveSpeed;
+    public float rotateSpeed;
 
     // Use this for initialization
     void Start () {
