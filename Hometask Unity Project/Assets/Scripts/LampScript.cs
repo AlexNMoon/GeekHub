@@ -7,28 +7,51 @@ public class LampScript : MonoBehaviour
 
     public bool safeMode;
     public GameObject lamp;
+    public GameObject spotlight;
+    private bool Change;
 
 	// Use this for initialization
 	void Start ()
-    {
-        DOTween.Init();
-        lampMode();
-	}
+	{
+	    Change = true;
+        StartCoroutine(Pause());
+    }
 
-    void OnTrigerEnter (Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (Input.GetButton("Submit"))
+        Debug.Log("Entered Triger");
+        if (Input.GetKey(KeyCode.Return))
         {
+            Debug.Log("Pressed Enter");
             safeMode = !safeMode;
-            lampMode();
+            Change = true;
+
         }
     }
 
-    void lampMode()
+
+
+    IEnumerator Pause()
     {
-        if (!safeMode)
+        while (true)
         {
-            
+            if (Change)
+            {
+
+                Change = false;
+                if (!safeMode)
+                {
+                    Debug.Log("Scary mode");
+                    
+                    
+
+                        yield return new WaitForSeconds(0.5F);
+                        spotlight.GetComponent<Light>().enabled = !spotlight.GetComponent<Light>().enabled;
+                    
+                }
+                else spotlight.GetComponent<Light>().enabled = true;
+
+            }
         }
     }
 }
