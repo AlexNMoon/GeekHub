@@ -7,10 +7,12 @@ public class NewSceneLoad : MonoBehaviour
 {
 
     public String sceneName;
+   
 
     void OnTriggerStay(Collider other)
     {
         SceneManager.LoadScene(sceneName);
+        
     }
 
 }

@@ -1,57 +1,50 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using DG.Tweening;
 
-public class LampScript : MonoBehaviour
+namespace Assets.Scripts
 {
-
-    public bool safeMode;
-    public GameObject lamp;
-    public GameObject spotlight;
-    private bool Change;
-
-	// Use this for initialization
-	void Start ()
-	{
-	    Change = true;
-        StartCoroutine(Pause());
-    }
-
-    void OnTriggerStay(Collider other)
+    public class LampScript : MonoBehaviour
     {
-        Debug.Log("Entered Triger");
-        if (Input.GetKey(KeyCode.Return))
-        {
-            Debug.Log("Pressed Enter");
-            safeMode = !safeMode;
-            Change = true;
 
+        public bool SafeMode;
+        public GameObject Lamp;
+        public GameObject Spotlight;
+
+        // Use this for initialization
+        void Start ()
+        {
+            StartCoroutine(Pause());
         }
-    }
 
-
-
-    IEnumerator Pause()
-    {
-        while (true)
+        void OnTriggerStay(Collider other)
         {
-            if (Change)
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-
-                Change = false;
-                if (!safeMode)
+                SafeMode = !SafeMode;
+                if (!SafeMode)
                 {
-                    Debug.Log("Scary mode");
-                    
-                    
-
-                        yield return new WaitForSeconds(0.5F);
-                        spotlight.GetComponent<Light>().enabled = !spotlight.GetComponent<Light>().enabled;
-                    
+                    StartCoroutine(Pause());
                 }
-                else spotlight.GetComponent<Light>().enabled = true;
 
             }
         }
+
+
+
+        IEnumerator Pause()
+        {
+            var rotation = new Vector3(70, 0, 0);
+            while (!SafeMode)
+            {
+                Lamp.transform.DORotate(rotation, 1, RotateMode.Fast);
+                rotation.x = -rotation.x;
+                yield return new WaitForSeconds(Random.Range(0.1f, 0.75f));
+                Spotlight.GetComponent<Light>().intensity = Random.Range(0f, 8f);
+            }
+            Spotlight.GetComponent<Light>().intensity = 5;
+            Lamp.transform.DORotate(new Vector3(0, 0, 0), 1, RotateMode.Fast);
+        }
+
     }
 }
