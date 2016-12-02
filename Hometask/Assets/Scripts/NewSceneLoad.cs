@@ -1,18 +1,18 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewSceneLoad : MonoBehaviour
+namespace Assets.Scripts
 {
-
-    public String sceneName;
-   
-
-    void OnTriggerStay(Collider other)
+    public class NewSceneLoad : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneName);
-        
-    }
 
+        public string SceneName;
+   
+        void OnTriggerStay(Collider other)
+        {
+            SceneManager.LoadScene(SceneName);
+        
+        }
+
+    }
 }
