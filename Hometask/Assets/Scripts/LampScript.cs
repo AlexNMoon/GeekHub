@@ -10,36 +10,60 @@ namespace Assets.Scripts
         public bool SafeMode;
         public GameObject Lamp;
         public GameObject Spotlight;
+        private bool _triggerEntered;
 
-        // Use this for initialization
         void Start ()
         {
-            StartCoroutine(Pause());
+            _triggerEntered = false;
+            StartCoroutine(Flickering());
         }
 
-        void OnTriggerStay(Collider other)
+        void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.Return)) return;
-            SafeMode = !SafeMode;
-            if (!SafeMode)
+            if (Input.GetButtonDown("Submit") && _triggerEntered)
             {
-                StartCoroutine(Pause());
+                SafeMode = !SafeMode;
+                Debug.Log("Safe mode changed.");
+                if (!SafeMode)
+                {
+                    StartCoroutine(Flickering());
+                }
             }
         }
 
-        private IEnumerator Pause()
+        void OnTriggerEnter(Collider other)
         {
-            var rotation = new Vector3(70, 0, 0);
+            Debug.Log("On triger enter.");
+            _triggerEntered = true;
+            
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            _triggerEntered = false;
+        }
+
+        private IEnumerator Flickering()
+        {
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(Lamp.transform.DORotate(new Vector3(30, 0, 0), 3))
+                .Append(Lamp.transform.DORotate(new Vector3(-30, 0, 0), 3))
+                .Append(Lamp.transform.DORotate(new Vector3(0, 0, 0), 3))
+                .SetLoops(-1);
+           /* Lamp.transform.DORotate(new Vector3(70, 0, 0), 7)
+                    .OnComplete((() =>
+                    {
+                        Lamp.transform.DORotate(new Vector3(-70, 0, 0), 7);
+                    }))
+                    .SetLoops(-1);*/
             while (!SafeMode)
             {
-                Lamp.transform.DORotate(rotation, 1, RotateMode.Fast);
-                //Lamp.transform.Rotate(rotation);
-                rotation.x = -rotation.x;
                 yield return new WaitForSeconds(Random.Range(0.1f, 0.75f));
                 Spotlight.GetComponent<Light>().intensity = Random.Range(0f, 5f);
             }
-            Spotlight.GetComponent<Light>().intensity = 5;
-            Lamp.transform.DORotate(new Vector3(0, 0, 0), 1, RotateMode.Fast);
+            sequence.Kill();
+            Spotlight.GetComponent<Light>().intensity = 5f;
+            Lamp.transform.DORotate(new Vector3(0, 0, 0), 1);
         }
 
     }
