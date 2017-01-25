@@ -1,32 +1,14 @@
 fileFormatVersion: 2
-guid: c64e59ed385cb1845840ddb62f9f7341
-timeCreated: 1482320054
-licenseType: Free
+guid: 48f725cd7b7b54e47a30bb2de08d44da
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: ball_New_Material_5
-    100002: //RootNode
-    100004: grips_New_Material_6
-    100006: pin_New_Material_3
-    100008: rings_New_Material_4
-    400000: ball_New_Material_5
-    400002: //RootNode
-    400004: grips_New_Material_6
-    400006: pin_New_Material_3
-    400008: rings_New_Material_4
-    2300000: ball_New_Material_5
-    2300002: grips_New_Material_6
-    2300004: pin_New_Material_3
-    2300006: rings_New_Material_4
-    3300000: ball_New_Material_5
-    3300002: grips_New_Material_6
-    3300004: pin_New_Material_3
-    3300006: rings_New_Material_4
-    4300000: ball_New_Material_5
-    4300002: grips_New_Material_6
-    4300004: pin_New_Material_3
-    4300006: rings_New_Material_4
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: revolvedSurface1
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -51,7 +33,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.01
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -65,12 +47,12 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
-  importAnimation: 1
+    tangentImportMode: 4
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
@@ -87,7 +69,7 @@ ModelImporter:
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
-  additionalBone: 0
+  additionalBone: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

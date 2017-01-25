@@ -50,13 +50,7 @@ namespace Assets.Scripts
                 .Append(Lamp.transform.DORotate(new Vector3(-30, 0, 0), 3))
                 .Append(Lamp.transform.DORotate(new Vector3(0, 0, 0), 3))
                 .SetLoops(-1);
-           /* Lamp.transform.DORotate(new Vector3(70, 0, 0), 7)
-                    .OnComplete((() =>
-                    {
-                        Lamp.transform.DORotate(new Vector3(-70, 0, 0), 7);
-                    }))
-                    .SetLoops(-1);*/
-            while (!SafeMode)
+           while (!SafeMode)
             {
                 yield return new WaitForSeconds(Random.Range(0.1f, 0.75f));
                 Spotlight.GetComponent<Light>().intensity = Random.Range(0f, 5f);
