@@ -9,7 +9,6 @@ namespace Assets.Scripts
         public Button Button;
         private Animator _animator;
     
-
         void Start()
         {
             _animator = Button.GetComponent<Animator>();
@@ -19,8 +18,6 @@ namespace Assets.Scripts
         {
             _animator.CrossFade("Triggered", 0f);
         }
-
-    
 
         void OnTriggerExit(Collider other)
         {

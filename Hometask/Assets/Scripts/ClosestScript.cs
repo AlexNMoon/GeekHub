@@ -33,7 +33,7 @@ public class ClosestScript : MonoBehaviour
                 text.text = "Avril Lavigne";
                 break;
             case "Canvas4":
-                text.text = "Taylor Momsen ";
+                text.text = "Taylor Momsen";
                 break;
             default:
                 text.text = "";
